@@ -103,16 +103,9 @@ function lclookout_customizer_css() {
     <style type="text/css">
         .site-header {
             background-color: <?php echo esc_attr(get_theme_mod('header_background_color', '#ffffff')); ?>;
-            <?php if (!$sticky_enabled) : ?>
-            position: relative;
-            <?php endif; ?>
         }
 
         <?php if ($sticky_enabled) : ?>
-        .site-header {
-            transition: all 0.3s ease;
-        }
-        
         .site-header.scrolled .custom-logo {
             max-height: <?php echo esc_attr($scrolled_height); ?>px;
         }

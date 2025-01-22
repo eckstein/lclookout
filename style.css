@@ -118,28 +118,12 @@ img {
     position: relative;
     z-index: 1000;
     border-bottom: 3px solid var(--primary-blue);
+    transition: transform 0.3s ease;
 }
 
 .site-header.sticky-enabled {
     position: sticky;
     top: 0;
-}
-
-.site-header.sticky-enabled .custom-logo {
-    transition: max-height 0.3s ease;
-}
-
-.site-header.header-hidden {
-    transform: translateY(-100%);
-}
-
-.site-header.scrolled {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.site-header.scrolled .header-inner {
-    padding-top: var(--spacing-sm);
-    padding-bottom: var(--spacing-sm);
 }
 
 .header-inner {
@@ -148,6 +132,7 @@ img {
     align-items: center;
     padding: var(--spacing-md) 0;
     gap: var(--spacing-lg);
+    transition: padding 0.3s ease;
 }
 
 .site-branding {
@@ -158,6 +143,7 @@ img {
 .custom-logo {
     max-height: 80px;
     width: auto;
+    transition: max-height 0.3s ease;
 }
 
 .site-title {
