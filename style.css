@@ -153,25 +153,25 @@ img {
     display: none;
 }
 
-.primary-menu-container {
+#primary-menu-container {
     display: flex;
     width: 100%;
     justify-content: flex-end;
 }
 
-.primary-menu {
+#primary-menu {
     display: flex;
     list-style-type: none!important;
     margin: 0;
     padding: 0;
     gap: var(--spacing-lg);
 }
-.primary-menu li {
+#primary-menu li {
     position: relative;
     list-style-type: none!important;
 }
 
-.primary-menu a {
+#primary-menu a {
     color: var(--text-dark);
     font-weight: 600;
     text-transform: uppercase;
@@ -182,7 +182,7 @@ img {
     display: block;
 }
 
-.primary-menu .sub-menu {
+#primary-menu .sub-menu {
     position: absolute;
     top: 100%;
     left: -1rem;
@@ -198,29 +198,29 @@ img {
     z-index: 100;
 }
 
-.primary-menu .menu-item-has-children:hover > .sub-menu {
+#primary-menu .menu-item-has-children:hover > .sub-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.primary-menu .sub-menu li {
+#primary-menu .sub-menu li {
     margin: 0;
 }
 
-.primary-menu .sub-menu a {
+#primary-menu .sub-menu a {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: 0.85rem;
     border-radius: 4px;
     transition: all 0.2s ease;
 }
 
-.primary-menu .sub-menu a:hover {
+#primary-menu .sub-menu a:hover {
     background: var(--light-gray);
     color: var(--primary-blue);
 }
 
-.primary-menu .menu-item-has-children > a::after {
+#primary-menu .menu-item-has-children > a::after {
     content: '';
     display: inline-block;
     width: 0.4em;
@@ -497,7 +497,7 @@ img {
         bottom: -8px;
     }
 
-    .primary-menu-container {
+    #primary-menu-container {
         display: none;
         width: 100%;
         background: var(--white);
@@ -508,23 +508,23 @@ img {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .primary-menu {
+    #primary-menu {
         flex-direction: column;
         width: 100%;
         gap: 0;
     }
 
-    .primary-menu li {
+    #primary-menu li {
         margin: 0;
         border-top: 1px solid var(--medium-gray);
     }
 
-    .primary-menu a {
+    #primary-menu a {
         padding: var(--spacing-md) var(--spacing-lg);
         display: block;
     }
 
-    .primary-menu .sub-menu {
+    #primary-menu .sub-menu {
         position: static;
         opacity: 1;
         visibility: visible;
@@ -535,16 +535,16 @@ img {
         display: none;
     }
 
-    .primary-menu .menu-item-has-children.active > .sub-menu {
+    #primary-menu .menu-item-has-children.active > .sub-menu {
         display: block;
     }
 
-    .primary-menu .menu-item-has-children > a::after {
+    #primary-menu .menu-item-has-children > a::after {
         transform: rotate(-45deg);
         transition: transform 0.3s ease;
     }
 
-    .primary-menu .menu-item-has-children.active > a::after {
+    #primary-menu .menu-item-has-children.active > a::after {
         transform: rotate(45deg);
     }
 
@@ -1328,7 +1328,7 @@ img {
 }
 
 @media (max-width: 768px) {
-    .primary-menu-container {
+    #primary-menu-container {
         display: none;
         width: 100%;
         background: var(--white);
@@ -1339,23 +1339,23 @@ img {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .primary-menu-container.active {
+    #primary-menu-container.active {
         display: block;
     }
 
-    .primary-menu {
+    #primary-menu {
         flex-direction: column;
         width: 100%;
         gap: 0;
     }
 
-    .primary-menu li {
+    #primary-menu li {
         margin: 0;
         border-top: 1px solid var(--medium-gray);
         position: relative;
     }
 
-    .primary-menu a {
+    #primary-menu a {
         padding: var(--spacing-md) var(--spacing-lg);
         display: block;
     }
@@ -1364,12 +1364,12 @@ img {
         display: block;
     }
 
-    .primary-menu .sub-menu {
+    #primary-menu .sub-menu {
         width: 100%;
         padding-left: var(--spacing-lg);
     }
 
-    .primary-menu .sub-menu li:last-child {
+    #primary-menu .sub-menu li:last-child {
         border-bottom: none;
     }
 }
