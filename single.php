@@ -3,6 +3,9 @@
 <main id="primary" class="site-main container">
     <?php while (have_posts()) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
+            <script type="application/ld+json">
+                <?php echo lclookout_get_schema_article(); ?>
+            </script>
             <header class="entry-header">
                 <?php if (has_post_thumbnail()): ?>
                     <div class="post-thumbnail">

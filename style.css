@@ -169,6 +169,7 @@ img {
 
 .primary-menu li {
     position: relative;
+    list-style: none;
 }
 
 .primary-menu a {

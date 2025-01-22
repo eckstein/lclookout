@@ -105,4 +105,81 @@ if (!function_exists('lclookout_post_thumbnail')):
         <?php
         endif;
     }
-endif; 
+endif;
+
+/**
+ * Schema Markup Functions
+ */
+
+function lclookout_get_schema_article() {
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        'headline' => get_the_title(),
+        'datePublished' => get_the_date('c'),
+        'dateModified' => get_the_modified_date('c'),
+        'author' => array(
+            '@type' => 'Person',
+            'name' => get_the_author(),
+            'url' => get_author_posts_url(get_the_author_meta('ID'))
+        ),
+        'publisher' => array(
+            '@type' => 'Organization',
+            'name' => get_bloginfo('name'),
+            'logo' => array(
+                '@type' => 'ImageObject',
+                'url' => get_custom_logo() ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '',
+                'width' => 600,
+                'height' => 60
+            )
+        ),
+        'description' => get_the_excerpt(),
+        'mainEntityOfPage' => array(
+            '@type' => 'WebPage',
+            '@id' => get_permalink()
+        )
+    );
+
+    // Add featured image if exists
+    if (has_post_thumbnail()) {
+        $featured_img_url = get_the_post_thumbnail_url(null, 'full');
+        $schema['image'] = array(
+            '@type' => 'ImageObject',
+            'url' => $featured_img_url,
+            'width' => 1200,
+            'height' => 628
+        );
+    }
+
+    return wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+}
+
+function lclookout_get_schema_website() {
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'url' => home_url('/'),
+        'name' => get_bloginfo('name'),
+        'description' => get_bloginfo('description'),
+        'potentialAction' => array(
+            '@type' => 'SearchAction',
+            'target' => home_url('/?s={search_term_string}'),
+            'query-input' => 'required name=search_term_string'
+        )
+    );
+
+    return wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+}
+
+function lclookout_get_schema_organization() {
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'NewsMediaOrganization',
+        'name' => get_bloginfo('name'),
+        'url' => home_url('/'),
+        'logo' => get_custom_logo() ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '',
+        'description' => get_bloginfo('description')
+    );
+
+    return wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+} 
