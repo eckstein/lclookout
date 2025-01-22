@@ -42,23 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuContainer = document.querySelector('.primary-menu-container');
     const subMenuParents = document.querySelectorAll('.menu-item-has-children');
     const body = document.body;
-    let scrollPosition = 0;
-
-    function lockScroll() {
-        scrollPosition = window.pageYOffset;
-        body.style.overflow = 'hidden';
-        body.style.position = 'fixed';
-        body.style.top = `-${scrollPosition}px`;
-        body.style.width = '100%';
-    }
-
-    function unlockScroll() {
-        body.style.removeProperty('overflow');
-        body.style.removeProperty('position');
-        body.style.removeProperty('top');
-        body.style.removeProperty('width');
-        window.scrollTo(0, scrollPosition);
-    }
 
     if (menuToggle && menuContainer) {
         // Initialize ARIA attributes
@@ -72,11 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
             menuToggle.setAttribute('aria-expanded', (!isExpanded).toString());
             menuContainer.classList.toggle('active');
             
-            // Toggle scroll lock
+            // Toggle body scroll
             if (!isExpanded) {
-                lockScroll();
+                body.style.overflow = 'hidden';
             } else {
-                unlockScroll();
+                body.style.overflow = '';
             }
         });
     }
@@ -115,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isClickInside) {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuContainer.classList.remove('active');
-                unlockScroll();
+                body.style.overflow = '';
             }
         }
     });
@@ -125,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape' && menuContainer && menuContainer.classList.contains('active')) {
             menuToggle.setAttribute('aria-expanded', 'false');
             menuContainer.classList.remove('active');
-            unlockScroll();
+            body.style.overflow = '';
         }
     });
 }); 
