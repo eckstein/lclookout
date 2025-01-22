@@ -101,8 +101,9 @@ function lclookout_scripts() {
     // Enqueue Google Fonts
     wp_enqueue_style('lclookout-fonts', 'https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap', array(), null);
 
-    // Theme stylesheet
-    wp_enqueue_style('lclookout-style', get_stylesheet_uri(), array('lclookout-fonts'), filemtime(get_stylesheet_directory() . '/style.css'));
+    // Add a more aggressive cache buster
+    $style_version = defined('WP_DEBUG') && WP_DEBUG ? time() : LCLOOKOUT_VERSION . '.' . filemtime(get_stylesheet_directory() . '/style.css');
+    wp_enqueue_style('lclookout-style', get_stylesheet_uri(), array('lclookout-fonts'), $style_version);
 
     // Navigation Script
     wp_enqueue_script('lclookout-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime(get_template_directory() . '/js/navigation.js'), true);
