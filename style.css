@@ -1522,12 +1522,15 @@ img {
     flex-wrap: nowrap;
     gap: 2rem;
     position: relative;
+    z-index: 1;
 }
 
 .has-sidebar .content-area {
     flex: 1;
     min-width: 0;
     max-width: calc(100% - 332px);
+    position: relative;
+    z-index: 1;
 }
 
 #secondary.widget-area {
@@ -1536,6 +1539,8 @@ img {
     align-self: flex-start;
     position: sticky;
     top: 2rem;
+    z-index: 2;
+    height: fit-content;
 }
 
 /* Sidebar Widgets */
