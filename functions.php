@@ -94,16 +94,12 @@ function lclookout_scripts() {
     // Theme stylesheet
     wp_enqueue_style('lclookout-style', get_stylesheet_uri(), array('lclookout-fonts'), filemtime(get_stylesheet_directory() . '/style.css'));
 
-    // Theme main JS file
-    if (file_exists(get_template_directory() . '/assets/js/main.js')) {
-        wp_enqueue_script('lclookout-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), filemtime(get_template_directory() . '/assets/js/main.js'), true);
-    }
+    // Navigation Script
+    wp_enqueue_script('lclookout-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime(get_template_directory() . '/js/navigation.js'), true);
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
-
-    wp_enqueue_script('lclookout-navigation', get_template_directory_uri() . '/js/navigation.js', array(), wp_get_theme()->get('Version'), true);
 }
 add_action('wp_enqueue_scripts', 'lclookout_scripts');
 
