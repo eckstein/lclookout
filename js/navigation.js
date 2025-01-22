@@ -41,28 +41,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const menuContainer = document.querySelector('.primary-menu-container');
     const subMenuParents = document.querySelectorAll('.menu-item-has-children');
+    const body = document.body;
 
     if (menuToggle && menuContainer) {
-        menuToggle.addEventListener('click', function() {
+        // Initialize ARIA attributes
+        menuToggle.setAttribute('aria-expanded', 'false');
+        
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            menuToggle.setAttribute('aria-expanded', (!isExpanded).toString());
             menuContainer.classList.toggle('active');
-            document.body.style.overflow = !isExpanded ? 'hidden' : '';
+            
+            // Toggle body scroll
+            if (!isExpanded) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
         });
     }
 
     // Handle submenu toggles
-    subMenuParents.forEach(item => {
-        const link = item.querySelector('a');
-        
-        link.addEventListener('click', function(e) {
-            if (this.parentNode.querySelector('.sub-menu')) {
-                e.preventDefault();
-                const parent = this.parentNode;
-                parent.classList.toggle('active');
+    if (subMenuParents.length > 0) {
+        subMenuParents.forEach(item => {
+            const link = item.querySelector('a');
+            const subMenu = item.querySelector('.sub-menu');
+            
+            if (link && subMenu) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close other open submenus
+                    subMenuParents.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    item.classList.toggle('active');
+                });
             }
         });
-    });
+    }
 
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
@@ -72,8 +98,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isClickInside) {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuContainer.classList.remove('active');
-                document.body.style.overflow = '';
+                body.style.overflow = '';
             }
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuContainer && menuContainer.classList.contains('active')) {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuContainer.classList.remove('active');
+            body.style.overflow = '';
         }
     });
 }); 
