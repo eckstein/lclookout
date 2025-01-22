@@ -161,15 +161,14 @@ img {
 
 .primary-menu {
     display: flex;
-    list-style: none;
+    list-style-type: none;
     margin: 0;
     padding: 0;
     gap: var(--spacing-lg);
 }
-
 .primary-menu li {
     position: relative;
-    list-style: none;
+    list-style-type none;
 }
 
 .primary-menu a {
