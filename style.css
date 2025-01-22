@@ -53,10 +53,19 @@ body {
     font-family: var(--body-font);
     color: var(--text-dark);
     line-height: 1.8;
-    background-color: var(--light-gray);
+    background-color: var(--white);
     font-size: 1.125rem;
     margin: 0;
     padding: 0!important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -234,17 +243,15 @@ img {
 
 /* Content Area */
 .site-content {
-    padding: var(--spacing-xl) 0;
-    min-height: 70vh;
+    flex: 1;
+    background: var(--white);
 }
 
 /* Posts */
 .post {
     background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
     margin-bottom: var(--spacing-xl);
-    overflow: hidden;
+    border-bottom: 1px solid var(--medium-gray);
 }
 
 .post-thumbnail {
@@ -634,9 +641,6 @@ img {
 /* Single Post Styles */
 .single-post {
     background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
     margin-bottom: var(--spacing-xl);
 }
 
@@ -806,8 +810,7 @@ img {
     max-width: 800px;
     margin: 0 auto;
     padding: var(--spacing-xl);
-    background: var(--light-gray);
-    border-radius: 0 0 8px 8px;
+    background: var(--white);
 }
 
 .comments-title {
@@ -961,6 +964,7 @@ img {
     margin-bottom: var(--spacing-xl);
     padding: var(--spacing-xl) 0;
     border-bottom: 1px solid var(--medium-gray);
+    background: var(--white);
 }
 
 .archive-title {
@@ -1094,8 +1098,6 @@ img {
     max-width: 800px;
     margin: 0 auto;
     background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
 .error-404 .page-header {
@@ -1177,9 +1179,6 @@ img {
 /* Page Styles */
 .page-content {
     background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
     margin-bottom: var(--spacing-xl);
 }
 
