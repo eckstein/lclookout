@@ -393,7 +393,7 @@ img {
 .site-footer {
     background: var(--primary-blue);
     color: var(--white);
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
     margin-top: var(--spacing-xl);
     position: relative;
 }
@@ -441,15 +441,21 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.copyright {
     font-size: 0.9rem;
 }
 
 .footer-menu {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .footer-menu a {
@@ -565,6 +571,11 @@ img {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         display: none;
     }
+
+    .footer-widget-area {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
 }
 
 @media (max-width: 768px) {
@@ -635,6 +646,35 @@ img {
     .header-search {
         position: static;
     }
+
+    .site-footer {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .footer-widget-area {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .footer-widget {
+        padding: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .widget-title {
+        text-align: center;
+    }
+
+    .site-info {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+
+    .footer-menu {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -663,6 +703,30 @@ img {
     .header-search .search-submit svg {
         width: 18px;
         height: 18px;
+    }
+
+    .site-footer {
+        padding: var(--spacing-md) 0;
+    }
+
+    .footer-widget {
+        padding: var(--spacing-xs);
+    }
+
+    .footer-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+
+    .footer-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-menu a {
+        display: block;
+        padding: var(--spacing-xs) 0;
     }
 }
 
