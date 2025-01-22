@@ -506,16 +506,45 @@ img {
     .header-inner {
         grid-template-columns: auto 1fr auto;
         gap: var(--spacing-md);
-        padding: var(--spacing-sm) var(--container-padding);
+        padding: var(--spacing-md) var(--container-padding);
+        align-items: center;
     }
 
     .site-branding {
         order: 2;
-        text-align: center;
+        text-align: left;
+        padding: 0;
+    }
+
+    .custom-logo {
+        max-height: 45px;
+        width: auto;
     }
 
     .main-navigation {
         order: 1;
+    }
+
+    .menu-toggle {
+        padding: var(--spacing-xs);
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        border: 1px solid var(--medium-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        background: var(--light-gray);
+    }
+
+    .menu-toggle:hover {
+        background: var(--medium-gray);
+    }
+
+    .menu-icon, .menu-icon::before, .menu-icon::after {
+        width: 22px;
+        height: 2px;
     }
 
     .header-search {
@@ -525,60 +554,22 @@ img {
         max-width: none;
     }
 
-    .custom-logo {
-        max-height: 50px;
-    }
-
-    .menu-toggle {
-        padding: var(--spacing-xs);
-        width: 36px;
-        height: 36px;
-        border-radius: 4px;
-        border: 1px solid var(--medium-gray);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: var(--spacing-sm);
-    }
-
-    .menu-icon, .menu-icon::before, .menu-icon::after {
-        width: 20px;
-    }
-
     .header-search .search-form {
         position: absolute;
         top: 100%;
-        right: var(--container-padding);
-        left: var(--container-padding);
+        right: 0;
+        left: 0;
         background: var(--white);
-        padding: var(--spacing-sm);
-        border-radius: 0 0 4px 4px;
+        padding: var(--spacing-md);
+        border-top: 1px solid var(--medium-gray);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         display: none;
-    }
-
-    .header-search.active .search-form {
-        display: block;
-    }
-
-    .header-search .search-submit {
-        position: static;
-        transform: none;
-        padding: var(--spacing-xs) var(--spacing-sm);
-        background: var(--primary-blue);
-        color: var(--white);
-        border-radius: 4px;
-        margin-left: var(--spacing-xs);
-    }
-
-    .header-search .search-field {
-        border-radius: 4px;
     }
 }
 
 @media (max-width: 768px) {
     .header-inner {
-        padding: var(--spacing-xs) var(--container-padding);
+        padding: var(--spacing-sm) var(--container-padding);
     }
 
     .site-branding {
@@ -587,6 +578,10 @@ img {
 
     .custom-logo {
         max-height: 40px;
+    }
+
+    .site-title {
+        font-size: 1.5rem;
     }
 
     .primary-menu-container {
@@ -600,11 +595,11 @@ img {
     }
 
     #primary-menu {
-        padding: var(--spacing-sm) 0;
+        padding: 0;
     }
 
     #primary-menu a {
-        padding: var(--spacing-sm) var(--spacing-lg);
+        padding: var(--spacing-md) var(--spacing-lg);
         border-left: none;
         border-bottom: 1px solid var(--medium-gray);
     }
@@ -615,30 +610,40 @@ img {
 
     #primary-menu .sub-menu {
         background: var(--light-gray);
-        padding-left: var(--spacing-md);
+        padding: 0;
     }
 
     #primary-menu .sub-menu a {
-        padding: var(--spacing-sm) var(--spacing-lg);
+        padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) calc(var(--spacing-lg) * 1.5);
     }
 }
 
 @media (max-width: 480px) {
     .header-inner {
-        gap: var(--spacing-xs);
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 
     .custom-logo {
-        max-height: 35px;
+        max-height: 38px;
+    }
+
+    .site-title {
+        font-size: 1.25rem;
     }
 
     .menu-toggle {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
     }
 
     .menu-icon, .menu-icon::before, .menu-icon::after {
+        width: 20px;
+    }
+
+    .header-search .search-submit svg {
         width: 18px;
+        height: 18px;
     }
 }
 
