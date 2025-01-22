@@ -28,14 +28,16 @@
                     <span class="screen-reader-text"><?php esc_html_e('Menu', 'lclookout'); ?></span>
                     <span class="menu-icon"></span>
                 </button>
-                <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'primary',
-                    'menu_id'        => 'primary-menu',
-                    'container_class' => 'primary-menu-container',
-                    'fallback_cb'    => false,
-                ));
-                ?>
+                <div class="primary-menu-container">
+                    <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'primary',
+                        'menu_id'        => 'primary-menu',
+                        'container'      => false,
+                        'fallback_cb'    => false,
+                    ));
+                    ?>
+                </div>
             </nav>
 
             <div class="site-branding">
