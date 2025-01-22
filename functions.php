@@ -126,3 +126,95 @@ add_filter('pre_get_posts', 'lclookout_search_filter');
 // Include additional functionality
 require_once LCLOOKOUT_DIR . '/inc/template-functions.php';
 require_once LCLOOKOUT_DIR . '/inc/customizer.php';
+
+/**
+ * Customize WordPress Login Page
+ */
+function lclookout_login_logo() {
+    $custom_logo_id = get_theme_mod('custom_logo');
+    $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+
+    if ($logo) {
+        ?>
+        <style type="text/css">
+            #login h1 a, .login h1 a {
+                background-image: url(<?php echo esc_url($logo[0]); ?>);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                width: 300px;
+                height: 80px;
+                padding-bottom: 0;
+            }
+            body.login {
+                background: var(--light-gray);
+            }
+            body.login div#login {
+                padding: 8% 0;
+            }
+            .login form {
+                border-radius: 4px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            }
+            .login form .input {
+                border-radius: 4px;
+                border-color: var(--medium-gray);
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+            .login form .input:focus {
+                border-color: var(--primary-blue);
+                box-shadow: 0 0 0 1px var(--primary-blue);
+            }
+            .wp-core-ui .button-primary {
+                background: var(--primary-blue);
+                border-color: var(--primary-blue);
+                color: var(--white);
+                text-decoration: none;
+                text-shadow: none;
+                border-radius: 4px;
+                padding: 0 24px;
+                height: 40px;
+                line-height: 38px;
+                font-size: 14px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+            .wp-core-ui .button-primary:hover,
+            .wp-core-ui .button-primary:focus {
+                background: var(--primary-blue-dark);
+                border-color: var(--primary-blue-dark);
+                color: var(--white);
+            }
+            .login #backtoblog a, 
+            .login #nav a {
+                color: var(--text-dark);
+                transition: color 0.3s ease;
+            }
+            .login #backtoblog a:hover, 
+            .login #nav a:hover {
+                color: var(--primary-blue);
+            }
+            .login .message,
+            .login .success {
+                border-left-color: var(--primary-blue);
+            }
+            .login #login_error,
+            .login .error {
+                border-left-color: var(--accent-red);
+            }
+        </style>
+        <?php
+    }
+}
+add_action('login_enqueue_scripts', 'lclookout_login_logo');
+
+function lclookout_login_logo_url() {
+    return home_url();
+}
+add_filter('login_headerurl', 'lclookout_login_logo_url');
+
+function lclookout_login_logo_url_title() {
+    return get_bloginfo('name');
+}
+add_filter('login_headertext', 'lclookout_login_logo_url_title');
