@@ -1416,42 +1416,40 @@ img {
 
 /* Header Search */
 .header-search {
-    margin-left: auto;
     position: relative;
-    min-width: 250px;
+    margin-left: auto;
 }
 
 .header-search .search-form {
-    margin: 0;
     display: flex;
     align-items: center;
+    gap: var(--spacing-xs);
 }
 
 .header-search .search-field {
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: 8px 12px;
     border: 1px solid var(--medium-gray);
-    border-radius: 20px;
+    border-radius: 4px;
     font-size: 0.9rem;
-    width: 100%;
+    width: 180px;
     transition: all 0.3s ease;
 }
 
 .header-search .search-field:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(43, 87, 151, 0.1);
+    width: 220px;
 }
 
 .header-search .search-submit {
-    position: absolute;
-    right: var(--spacing-xs);
-    top: 50%;
-    transform: translateY(-50%);
     background: none;
     border: none;
-    padding: var(--spacing-xs);
+    padding: 8px;
     color: var(--text-light);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: color 0.3s ease;
 }
 
@@ -1466,10 +1464,61 @@ img {
 
 @media (max-width: 992px) {
     .header-search {
-        margin-left: 0;
-        margin-top: var(--spacing-sm);
-        width: 100%;
-        max-width: 400px;
+        order: 3;
+        margin: 0;
+    }
+
+    .header-search .search-field {
+        width: 140px;
+    }
+
+    .header-search .search-field:focus {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-search {
+        position: static;
+    }
+
+    .header-search .search-form {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: var(--spacing-sm);
+        background: var(--white);
+        border-top: 1px solid var(--medium-gray);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: none;
+        z-index: 1000;
+    }
+
+    .header-search.active .search-form {
+        display: flex;
+    }
+
+    .header-search .search-field {
+        flex: 1;
+        width: auto;
+        max-width: none;
+    }
+
+    .header-search .search-field:focus {
+        width: auto;
+    }
+
+    .header-search .search-submit {
+        padding: 8px 16px;
+        background: var(--primary-blue);
+        color: var(--white);
+        border-radius: 4px;
+    }
+
+    .header-search .search-submit:hover {
+        background: var(--primary-blue-dark);
+        color: var(--white);
     }
 }
 
