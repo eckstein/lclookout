@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="primary" class="site-main container has-sidebar">
+<main id="primary" class="site-main container">
     <?php if (have_posts()): ?>
         <div class="content-area">
             <?php

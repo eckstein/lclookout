@@ -1517,30 +1517,25 @@ img {
 }
 
 /* Layout with sidebar */
-.site-main.container.has-sidebar {
+.home .site-main.container {
     display: flex;
     flex-wrap: nowrap;
     gap: 2rem;
     position: relative;
-    z-index: 1;
 }
 
-.has-sidebar .content-area {
+.home .content-area {
     flex: 1;
     min-width: 0;
     max-width: calc(100% - 332px);
-    position: relative;
-    z-index: 1;
 }
 
-#secondary.widget-area {
+.home #secondary.widget-area {
     width: 300px;
     flex: 0 0 300px;
     align-self: flex-start;
     position: sticky;
     top: 2rem;
-    z-index: 2;
-    height: fit-content;
 }
 
 /* Sidebar Widgets */
@@ -1598,15 +1593,15 @@ img {
 
 /* Responsive Layout */
 @media screen and (max-width: 768px) {
-    .site-main.container.has-sidebar {
+    .home .site-main.container {
         flex-direction: column;
     }
 
-    .has-sidebar .content-area {
+    .home .content-area {
         max-width: 100%;
     }
 
-    #secondary.widget-area {
+    .home #secondary.widget-area {
         width: 100%;
         margin-top: 2rem;
         position: static;
@@ -1614,12 +1609,12 @@ img {
 }
 
 /* Admin Bar Adjustments */
-body.admin-bar #secondary.widget-area {
+.admin-bar #secondary.widget-area {
     top: calc(2rem + 32px);
 }
 
 @media screen and (max-width: 782px) {
-    body.admin-bar #secondary.widget-area {
+    .admin-bar #secondary.widget-area {
         top: calc(2rem + 46px);
     }
 }
