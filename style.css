@@ -1536,6 +1536,7 @@ img {
     align-self: flex-start;
     position: sticky;
     top: 2rem;
+    padding-top: 30px;
 }
 
 /* Sidebar Widgets */
