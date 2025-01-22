@@ -342,7 +342,7 @@ img {
     padding: var(--spacing-lg);
     text-align: left;
 }
-.homt .entry-header {
+.home .entry-header {
     padding-top: 0;
 }
 .entry-title {
