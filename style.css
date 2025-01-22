@@ -1372,15 +1372,19 @@ img {
 
 /* Content Area Layout */
 .site-main.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Layout with sidebar */
+.site-main.container.has-sidebar {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    padding: 2rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-.content-area {
+.has-sidebar .content-area {
     flex: 1;
     min-width: 0; /* Prevents content from overflowing */
     max-width: 100%;
@@ -1438,9 +1442,15 @@ img {
     margin-bottom: 0;
 }
 
+/* Post list widget */
+.rpwwt-post-comments-number {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
 /* Responsive Layout */
 @media screen and (max-width: 768px) {
-    .site-main.container {
+    .site-main.container.has-sidebar {
         flex-direction: column;
     }
 
