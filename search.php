@@ -33,7 +33,7 @@
             while (have_posts()) :
                 the_post();
                 ?>
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?>>
                     <header class="entry-header">
                         <?php if (has_post_thumbnail()): ?>
                             <div class="post-thumbnail">
@@ -58,7 +58,7 @@
                         </div>
                     </header>
 
-                    <div class="entry-summary">
+                    <div class="entry-content">
                         <?php the_excerpt(); ?>
                         <a href="<?php the_permalink(); ?>" class="read-more">
                             <?php esc_html_e('Read More', 'lclookout'); ?>

@@ -1,12 +1,12 @@
 <?php get_header(); ?>
 
 <main id="primary" class="site-main container">
-    <section class="error-404 not-found">
-        <header class="page-header">
-            <h1 class="page-title"><?php esc_html_e('Oops! Page Not Found', 'lclookout'); ?></h1>
+    <article class="error-404 post">
+        <header class="entry-header">
+            <h1 class="entry-title"><?php esc_html_e('Oops! Page Not Found', 'lclookout'); ?></h1>
         </header>
 
-        <div class="page-content">
+        <div class="entry-content">
             <p><?php esc_html_e('It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'lclookout'); ?></p>
 
             <div class="error-search">
@@ -62,7 +62,7 @@
                 </a>
             </div>
         </div>
-    </section>
+    </article>
 </main>
 
 <?php get_footer(); ?> 
