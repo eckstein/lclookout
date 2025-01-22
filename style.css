@@ -1,0 +1,45 @@
+/*
+Theme Name: Lewis County Lookout
+Theme URI: https://lewiscountylookout.com
+Description: A clean, professional news theme for Lewis County Lookout
+Version: 1.0.0
+Author: Lewis County Lookout
+Text Domain: lclookout
+*/
+
+/* Base CSS will be added here */
+:root {
+    /* Color Variables */
+    --primary-blue: #2B5797;    /* Deep, non-corporate blue */
+    --accent-red: #D64045;      /* Warm, approachable red */
+    --forest-green: #2A4747;    /* Evergreen inspired */
+    --light-gray: #F5F5F5;
+    --medium-gray: #E0E0E0;
+    --text-dark: #333333;
+    
+    /* Typography */
+    --body-font: 'Source Sans Pro', sans-serif;
+    --heading-font: 'Merriweather', serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4rem;
+}
+
+/* Reset & Base Styles */
+body {
+    font-family: var(--body-font);
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    line-height: 1.2;
+}
