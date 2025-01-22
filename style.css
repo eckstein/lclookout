@@ -343,7 +343,7 @@ img {
     text-align: left;
 }
 .home .entry-header {
-    padding-top: 0;
+    padding-top: 0!important;
 }
 .entry-title {
     font-size: 2rem;
