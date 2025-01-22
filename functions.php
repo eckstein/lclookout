@@ -218,3 +218,43 @@ function lclookout_login_logo_url_title() {
     return get_bloginfo('name');
 }
 add_filter('login_headertext', 'lclookout_login_logo_url_title');
+
+/**
+ * Output CSS Variables
+ */
+function lclookout_output_css_variables() {
+    ?>
+    <style>
+        :root {
+            /* Color Variables */
+            --primary-blue: #2B5797;
+            --primary-blue-dark: #1a3459;
+            --accent-red: #D64045;
+            --forest-green: #2A4747;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #4A4A4A;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            
+            /* Typography */
+            --body-font: 'Source Sans Pro', sans-serif;
+            --heading-font: 'Merriweather', serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+
+            /* Container Width */
+            --container-width: 1200px;
+            --container-padding: 2rem;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'lclookout_output_css_variables', 1);
+add_action('login_head', 'lclookout_output_css_variables', 1);
