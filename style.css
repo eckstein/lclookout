@@ -55,7 +55,7 @@ body {
     line-height: 1.8;
     background-color: var(--light-gray);
     font-size: 1.125rem;
-    padding: 0;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1034,9 +1034,12 @@ img {
 /* 404 Error Page */
 .error-404 {
     text-align: center;
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xl) var(--spacing-xl);
     max-width: 800px;
     margin: 0 auto;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
 .error-404 .page-header {
@@ -1205,5 +1208,64 @@ img {
 
     .page-thumbnail {
         padding-top: 60%;
+    }
+}
+
+/* Header Search */
+.header-search {
+    margin-left: var(--spacing-lg);
+    position: relative;
+    min-width: 250px;
+}
+
+.header-search .search-form {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-search .search-field {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: 1px solid var(--medium-gray);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.header-search .search-field:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(43, 87, 151, 0.1);
+}
+
+.header-search .search-submit {
+    position: absolute;
+    right: var(--spacing-xs);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: var(--spacing-xs);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header-search .search-submit:hover {
+    color: var(--primary-blue);
+}
+
+.header-search .search-submit svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 992px) {
+    .header-search {
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+        width: 100%;
+        max-width: 400px;
     }
 }

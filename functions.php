@@ -105,6 +105,16 @@ function lclookout_scripts() {
 }
 add_action('wp_enqueue_scripts', 'lclookout_scripts');
 
+// Modify search query to only show published posts
+function lclookout_search_filter($query) {
+    if (!is_admin() && $query->is_search && $query->is_main_query()) {
+        $query->set('post_type', 'post');
+        $query->set('post_status', 'publish');
+    }
+    return $query;
+}
+add_filter('pre_get_posts', 'lclookout_search_filter');
+
 // Include additional functionality
 require_once LCLOOKOUT_DIR . '/inc/template-functions.php';
 require_once LCLOOKOUT_DIR . '/inc/customizer.php';
