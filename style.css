@@ -115,10 +115,31 @@ img {
 .site-header {
     background-color: var(--white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1000;
     border-bottom: 3px solid var(--primary-blue);
+}
+
+.site-header.sticky-enabled {
+    position: sticky;
+    top: 0;
+}
+
+.site-header.sticky-enabled .custom-logo {
+    transition: max-height 0.3s ease;
+}
+
+.site-header.header-hidden {
+    transform: translateY(-100%);
+}
+
+.site-header.scrolled {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.site-header.scrolled .header-inner {
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
 }
 
 .header-inner {
@@ -1184,7 +1205,6 @@ img {
 
 .page-content .entry-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
 }
 
 .page-thumbnail {

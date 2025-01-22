@@ -21,7 +21,7 @@
         <?php esc_html_e('Skip to content', 'lclookout'); ?>
     </a>
 
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header<?php echo get_theme_mod('sticky_header_enabled', false) ? ' sticky-enabled' : ''; ?>">
         <div class="header-inner container">
             <nav id="site-navigation" class="main-navigation">
                 <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
