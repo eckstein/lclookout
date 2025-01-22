@@ -121,24 +121,37 @@ img {
 }
 
 .site-branding {
-    flex: 0 0 auto;
-    max-width: 300px;
-}
-
-.custom-logo {
-    max-height: 80px;
-    width: auto;
+    flex: 1;
+    text-align: center;
+    max-width: 100%;
 }
 
 .site-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 0;
     line-height: 1.2;
+    text-align: center;
+    font-family: var(--heading-font);
 }
 
 .site-title a {
     color: var(--primary-blue);
     font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-title a:hover {
+    color: var(--accent-red);
+}
+
+.site-logo {
+    margin-top: var(--spacing-sm);
+}
+
+.custom-logo {
+    max-height: 80px;
+    width: auto;
 }
 
 /* Navigation */
