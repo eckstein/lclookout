@@ -1590,7 +1590,7 @@ img {
         padding: 0 var(--spacing-sm);
     }
 
-    .header-search .search-submit {
+    .header-search .search-submit { 
         padding: 8px 12px;
     }
 
