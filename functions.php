@@ -53,9 +53,9 @@ add_action('after_setup_theme', 'lclookout_setup');
  */
 function lclookout_widgets_init() {
     register_sidebar(array(
-        'name'          => esc_html__('Homepage Sidebar', 'lclookout'),
-        'id'            => 'homepage-sidebar',
-        'description'   => esc_html__('Add widgets to the homepage sidebar.', 'lclookout'),
+        'name'          => esc_html__('Main Sidebar', 'lclookout'),
+        'id'            => 'sidebar-1',
+        'description'   => esc_html__('Add widgets here to appear in your sidebar.', 'lclookout'),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h2 class="widget-title">',
@@ -126,105 +126,3 @@ add_filter('pre_get_posts', 'lclookout_search_filter');
 // Include additional functionality
 require_once LCLOOKOUT_DIR . '/inc/template-functions.php';
 require_once LCLOOKOUT_DIR . '/inc/customizer.php';
-
-/**
- * Custom Sticky Posts Widget
- */
-class LCLOOKOUT_Sticky_Posts_Widget extends WP_Widget {
-    /**
-     * Sets up the widgets name etc
-     */
-    public function __construct() {
-        parent::__construct(
-            'lclookout_sticky_posts',
-            esc_html__('LC Lookout Sticky Posts', 'lclookout'),
-            array('description' => esc_html__('Displays sticky posts in a sidebar.', 'lclookout'))
-        );
-    }
-
-    /**
-     * Front-end display of widget
-     *
-     * @param array $args     Widget arguments
-     * @param array $instance Saved values from database
-     */
-    public function widget($args, $instance) {
-        $title = !empty($instance['title']) ? $instance['title'] : esc_html__('Featured Posts', 'lclookout');
-        $number = !empty($instance['number']) ? absint($instance['number']) : 5;
-
-        $sticky = get_option('sticky_posts');
-        
-        if (!empty($sticky)) {
-            $query = new WP_Query(array(
-                'posts_per_page' => $number,
-                'post__in' => $sticky,
-                'ignore_sticky_posts' => 1
-            ));
-
-            if ($query->have_posts()) {
-                echo $args['before_widget'];
-                echo $args['before_title'] . esc_html($title) . $args['after_title'];
-                
-                echo '<ul class="sticky-posts-list">';
-                while ($query->have_posts()) {
-                    $query->the_post();
-                    echo '<li class="sticky-post-item">';
-                    if (has_post_thumbnail()) {
-                        echo '<a href="' . esc_url(get_permalink()) . '" class="sticky-post-thumbnail">';
-                        the_post_thumbnail('thumbnail');
-                        echo '</a>';
-                    }
-                    echo '<div class="sticky-post-content">';
-                    echo '<h3 class="sticky-post-title"><a href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></h3>';
-                    echo '<span class="sticky-post-date">' . get_the_date() . '</span>';
-                    echo '</div>';
-                    echo '</li>';
-                }
-                echo '</ul>';
-                
-                echo $args['after_widget'];
-            }
-            wp_reset_postdata();
-        }
-    }
-
-    /**
-     * Back-end widget form
-     *
-     * @param array $instance Previously saved values from database
-     */
-    public function form($instance) {
-        $title = !empty($instance['title']) ? $instance['title'] : esc_html__('Featured Posts', 'lclookout');
-        $number = !empty($instance['number']) ? absint($instance['number']) : 5;
-        ?>
-        <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'lclookout'); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('number'); ?>"><?php esc_html_e('Number of posts to show:', 'lclookout'); ?></label>
-            <input class="tiny-text" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="number" step="1" min="1" value="<?php echo esc_attr($number); ?>" size="3">
-        </p>
-        <?php
-    }
-
-    /**
-     * Sanitize widget form values as they are saved
-     *
-     * @param array $new_instance Values just sent to be saved
-     * @param array $old_instance Previously saved values from database
-     * @return array Updated safe values to be saved
-     */
-    public function update($new_instance, $old_instance) {
-        $instance = array();
-        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
-        $instance['number'] = (!empty($new_instance['number'])) ? absint($new_instance['number']) : 5;
-        return $instance;
-    }
-}
-
-// Register the sticky posts widget
-function lclookout_register_sticky_posts_widget() {
-    register_widget('LCLOOKOUT_Sticky_Posts_Widget');
-}
-add_action('widgets_init', 'lclookout_register_sticky_posts_widget');
