@@ -342,7 +342,9 @@ img {
     padding: var(--spacing-lg);
     text-align: left;
 }
-
+.homt .entry-header {
+    padding-top: 0;
+}
 .entry-title {
     font-size: 2rem;
     margin-bottom: var(--spacing-md);

@@ -10,7 +10,9 @@
                     <header class="entry-header">
                         <?php if (has_post_thumbnail()): ?>
                             <div class="post-thumbnail">
-                                <?php the_post_thumbnail('large'); ?>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('large'); ?>
+                                </a>
                             </div>
                         <?php endif; ?>
 
