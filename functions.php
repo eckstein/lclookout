@@ -268,3 +268,22 @@ function lclookout_output_css_variables() {
 }
 add_action('wp_head', 'lclookout_output_css_variables', 1);
 add_action('login_head', 'lclookout_output_css_variables', 1);
+
+/**
+ * Customize the excerpt "read more" string
+ */
+function lclookout_excerpt_more($more) {
+    return sprintf('... <a class="more-link" href="%s">%s</a>',
+        esc_url(get_permalink()),
+        esc_html__('Keep reading...', 'lclookout')
+    );
+}
+add_filter('excerpt_more', 'lclookout_excerpt_more');
+
+/**
+ * Customize the content "read more" link
+ */
+function lclookout_content_more($more_link_element) {
+    return str_replace('more-link', 'more-link read-more', $more_link_element);
+}
+add_filter('the_content_more_link', 'lclookout_content_more');

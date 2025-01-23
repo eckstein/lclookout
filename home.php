@@ -36,10 +36,7 @@
                     </header>
 
                     <div class="entry-content">
-                        <?php the_content(); ?>
-                        <a href="<?php the_permalink(); ?>" class="read-more">
-                            <?php esc_html_e('Read More', 'lclookout'); ?>
-                        </a>
+                        <?php the_content(''); ?>
                     </div>
                 </article>
             <?php endwhile;
