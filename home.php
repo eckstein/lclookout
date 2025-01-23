@@ -36,7 +36,7 @@
                     </header>
 
                     <div class="entry-content">
-                        <?php the_content(''); ?>
+                        <?php the_content(esc_html__('Keep reading...', 'lclookout')); ?>
                     </div>
                 </article>
             <?php endwhile;
