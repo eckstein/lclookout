@@ -1838,6 +1838,9 @@ img {
         margin-top: 2rem;
         position: static;
     }
+    .home .site-description {
+        display: none;
+    }
 }
 
 /* Admin Bar Adjustments */
