@@ -371,7 +371,6 @@ img {
 .read-more,
 .more-link {
     display: block;
-    text-align: right;
     color: var(--primary-blue);
     margin-top: var(--spacing-md);
     font-weight: 600;
