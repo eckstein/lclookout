@@ -42,10 +42,7 @@
                     </header>
 
                     <div class="entry-content">
-                        <?php the_excerpt(); ?>
-                        <a href="<?php the_permalink(); ?>" class="read-more">
-                            <?php esc_html_e('Read More', 'lclookout'); ?>
-                        </a>
+                        <?php the_content(esc_html__('Keep reading...', 'lclookout')); ?>
                     </div>
                 </article>
             <?php endwhile; ?>

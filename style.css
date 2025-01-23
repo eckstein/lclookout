@@ -1449,7 +1449,7 @@ img {
 .page-content .entry-footer {
     max-width: 800px;
     margin: 0 auto;
-    padding: var(--spacing-lg) var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-xl);
     border-top: 1px solid var(--medium-gray);
     text-align: center;
 }
