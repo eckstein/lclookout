@@ -51,6 +51,9 @@
                         </a>
                     </h1>
                 <?php endif; ?>
+                <?php if (get_bloginfo('description')): ?>
+                    <p class="site-description"><?php bloginfo('description'); ?></p>
+                <?php endif; ?>
             </div>
 
             <div class="header-search">

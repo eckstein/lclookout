@@ -755,7 +755,7 @@ img {
 }
 
 .single-post .entry-header {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
