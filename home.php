@@ -36,7 +36,7 @@
                     </header>
 
                     <div class="entry-content">
-                        <?php the_excerpt(); ?>
+                        <?php the_content(); ?>
                         <a href="<?php the_permalink(); ?>" class="read-more">
                             <?php esc_html_e('Read More', 'lclookout'); ?>
                         </a>
