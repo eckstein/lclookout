@@ -1000,6 +1000,10 @@ img {
     color: var(--white);
 }
 
+.footer-widget ul {
+    padding-left: 1em;
+}
+
 .site-info {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: var(--spacing-lg);
@@ -1409,6 +1413,11 @@ img {
     margin: 0 auto;
     padding: 0 var(--spacing-xl) var(--spacing-xl);
     border-top: 1px solid var(--medium-gray);
+}
+
+.single-post ul {
+    padding-left: 2em;
+    margin-bottom: 1em;
 }
 
 .post-tags {
@@ -1910,6 +1919,11 @@ img {
     margin: 0 auto;
     padding: 0 var(--spacing-xl) var(--spacing-xl);
     border-bottom: 0;
+}
+
+.page-content .entry-content ul {
+   margin-bottom: 1em;
+   padding-left: 2em;
 }
 
 .page-content .entry-footer {
