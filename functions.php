@@ -133,7 +133,7 @@ function lclookout_scripts() {
         'lclookout-header-search',
         get_template_directory_uri() . '/js/header-search.js',
         array(),
-        '1.0.0',
+        filemtime(get_template_directory() . '/js/header-search.js'),
         true
     );
 }
