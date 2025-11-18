@@ -22,13 +22,10 @@
     </a>
 
     <header id="masthead" class="site-header<?php echo get_theme_mod('sticky_header_enabled', false) ? ' sticky-enabled' : ''; ?>">
-        <div class="header-inner container">
-            <nav id="site-navigation" class="main-navigation">
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <span class="screen-reader-text"><?php esc_html_e('Menu', 'lclookout'); ?></span>
-                    <span class="menu-icon"></span>
-                </button>
-                <div class="primary-menu-container">
+        <div id="site-header-ribbon">
+            <div class="ribbon-inner container">
+                <!-- Main Menu for Desktop -->
+                <nav id="site-navigation" class="main-navigation desktop-only">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'primary',
@@ -38,8 +35,35 @@
                         'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                     ));
                     ?>
+                </nav>
+
+                <!-- Social Icons for Desktop -->
+                <nav class="social-icons-menu desktop-only">
+                    <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'social-icons',
+                        'menu_id'        => 'social-icons',
+                        'container'      => false,
+                        'fallback_cb'    => false,
+                        'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                    ));
+                    ?>
+                </nav>
+
+                <!-- Mobile Hamburger Menu Toggle -->
+                <button class="menu-toggle mobile-only" aria-controls="mobile-combined-menu" aria-expanded="false">
+                    <span class="screen-reader-text"><?php esc_html_e('Menu', 'lclookout'); ?></span>
+                    <i class="fas fa-bars menu-icon-open"></i>
+                    <i class="fas fa-times menu-icon-close"></i>
+                </button>
+
+                <!-- Combined Mobile Menu Container -->
+                <div id="mobile-combined-menu" class="mobile-menu-container mobile-only">
+                    <!-- Populated by JavaScript -->
                 </div>
-            </nav>
+            </div>
+        </div>
+        <div class="header-inner container">
 
             <div class="site-branding">
                 <?php if (has_custom_logo()): ?>
@@ -75,6 +99,51 @@
                     </div>
                 </form>
             </div>
+            <div class="header-today-date">
+                <?php echo date('F j, Y'); ?>
+            </div>
+            
+        </div>
+        <div class="main-cat-menu-wrapper desktop-only">
+            <?php wp_nav_menu(array(
+                'theme_location' => 'main-cat-menu',
+                'menu_id'        => 'main-cat-menu',
+                'container'      => false,
+                'fallback_cb'    => false,
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            )); ?>
+        </div>
+
+        <!-- Hidden menu sources for mobile JavaScript to clone from -->
+        <div class="mobile-menu-sources" style="display: none;">
+            <?php 
+            // Category menu clone source
+            wp_nav_menu(array(
+                'theme_location' => 'main-cat-menu',
+                'menu_id'        => 'mobile-cat-menu',
+                'container'      => false,
+                'fallback_cb'    => false,
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            )); 
+            
+            // Primary menu clone source
+            wp_nav_menu(array(
+                'theme_location' => 'primary',
+                'menu_id'        => 'mobile-primary-menu',
+                'container'      => false,
+                'fallback_cb'    => false,
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            ));
+            
+            // Social icons clone source
+            wp_nav_menu(array(
+                'theme_location' => 'social-icons',
+                'menu_id'        => 'mobile-social-menu',
+                'container'      => false,
+                'fallback_cb'    => false,
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            ));
+            ?>
         </div>
     </header>
 

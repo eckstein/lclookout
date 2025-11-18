@@ -24,9 +24,11 @@
                         <span class="byline">
                             <?php the_author_posts_link(); ?>
                         </span>
-                        <?php if (has_category()): ?>
+                        <?php 
+                        $filtered_categories = lclookout_get_filtered_categories();
+                        if (!empty($filtered_categories)): ?>
                             <span class="categories">
-                                <?php the_category(', '); ?>
+                                <?php lclookout_the_category(', '); ?>
                             </span>
                         <?php endif; ?>
                     </div>

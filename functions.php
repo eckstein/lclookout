@@ -16,7 +16,7 @@ define('LCLOOKOUT_URI', get_template_directory_uri());
  * Theme Setup
  */
 function lclookout_setup() {
-    // Add default posts and comments RSS feed links to head
+    // Add default posts RSS feed links to head
     add_theme_support('automatic-feed-links');
 
     // Let WordPress manage the document title
@@ -28,14 +28,14 @@ function lclookout_setup() {
     // Register nav menus
     register_nav_menus(array(
         'primary' => esc_html__('Primary Menu', 'lclookout'),
+        'main-cat-menu' => esc_html__('Main Category Menu', 'lclookout'),
+        'social-icons' => esc_html__('Social Icons', 'lclookout'),
         'footer' => esc_html__('Footer Menu', 'lclookout'),
     ));
 
     // Switch default core markup to output valid HTML5
     add_theme_support('html5', array(
         'search-form',
-        'comment-form',
-        'comment-list',
         'gallery',
         'caption',
     ));
@@ -56,6 +56,26 @@ function lclookout_widgets_init() {
         'name'          => esc_html__('Main Sidebar', 'lclookout'),
         'id'            => 'sidebar-1',
         'description'   => esc_html__('Add widgets here to appear in your sidebar.', 'lclookout'),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ));
+
+    register_sidebar(array(
+        'name'          => esc_html__('Home Left Sidebar', 'lclookout'),
+        'id'            => 'home-sidebar-left',
+        'description'   => esc_html__('Add widgets here to appear on the left side of the home page.', 'lclookout'),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ));
+
+    register_sidebar(array(
+        'name'          => esc_html__('Home Right Sidebar', 'lclookout'),
+        'id'            => 'home-sidebar-right',
+        'description'   => esc_html__('Add widgets here to appear on the right side of the home page.', 'lclookout'),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h2 class="widget-title">',
@@ -107,10 +127,6 @@ function lclookout_scripts() {
 
     // Navigation Script
     wp_enqueue_script('lclookout-navigation', get_template_directory_uri() . '/js/navigation.js', array(), filemtime(get_template_directory() . '/js/navigation.js'), true);
-
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
 
     // Enqueue header search script
     wp_enqueue_script(
@@ -273,10 +289,7 @@ add_action('login_head', 'lclookout_output_css_variables', 1);
  * Customize the excerpt "read more" string
  */
 function lclookout_excerpt_more($more) {
-    return sprintf('... <a class="more-link" href="%s">%s</a>',
-        esc_url(get_permalink()),
-        esc_html__('Keep reading...', 'lclookout')
-    );
+    return '...';
 }
 add_filter('excerpt_more', 'lclookout_excerpt_more');
 
@@ -287,3 +300,88 @@ function lclookout_content_more($more_link_element) {
     return str_replace('more-link', 'more-link read-more', $more_link_element);
 }
 add_filter('the_content_more_link', 'lclookout_content_more');
+
+/**
+ * Add Main Home Page Category setting to Reading Settings
+ */
+function lclookout_reading_settings_init() {
+    // Register the setting
+    register_setting('reading', 'lclookout_main_category', array(
+        'type' => 'integer',
+        'sanitize_callback' => 'absint',
+        'default' => 0
+    ));
+
+    // Add the settings field
+    add_settings_field(
+        'lclookout_main_category',
+        __('Main Home Page Category', 'lclookout'),
+        'lclookout_main_category_callback',
+        'reading'
+    );
+}
+add_action('admin_init', 'lclookout_reading_settings_init');
+
+/**
+ * Render the Main Home Page Category dropdown
+ */
+function lclookout_main_category_callback() {
+    $selected_category = get_option('lclookout_main_category', 0);
+    $categories = get_categories(array('hide_empty' => false));
+    
+    echo '<select name="lclookout_main_category" id="lclookout_main_category">';
+    echo '<option value="0">' . esc_html__('— Select Category —', 'lclookout') . '</option>';
+    
+    foreach ($categories as $category) {
+        printf(
+            '<option value="%d" %s>%s</option>',
+            $category->term_id,
+            selected($selected_category, $category->term_id, false),
+            esc_html($category->name)
+        );
+    }
+    
+    echo '</select>';
+    echo '<p class="description">' . esc_html__('Select the main category for your news archive. The "Read More News" link on the home page will direct to this category.', 'lclookout') . '</p>';
+}
+
+/**
+ * Get categories excluding the main home page category
+ */
+function lclookout_get_filtered_categories($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+    
+    $main_category_id = get_option('lclookout_main_category', 0);
+    $categories = get_the_category($post_id);
+    
+    if (!$categories || !$main_category_id) {
+        return $categories;
+    }
+    
+    // Filter out the main category
+    $filtered_categories = array_filter($categories, function($category) use ($main_category_id) {
+        return $category->term_id != $main_category_id;
+    });
+    
+    return $filtered_categories;
+}
+
+/**
+ * Display category links excluding the main home page category
+ */
+function lclookout_the_category($separator = ', ', $parents = '', $post_id = false) {
+    $categories = lclookout_get_filtered_categories($post_id);
+    
+    if (empty($categories)) {
+        return;
+    }
+    
+    $links = array();
+    foreach ($categories as $category) {
+        $links[] = '<a href="' . esc_url(get_category_link($category->term_id)) . '" rel="category tag">' . esc_html($category->name) . '</a>';
+    }
+    
+    echo implode($separator, $links);
+}

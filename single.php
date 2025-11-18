@@ -15,8 +15,8 @@
 
                 <div class="entry-meta-top">
                     <?php
-                    $categories = get_the_category();
-                    if ($categories) {
+                    $categories = lclookout_get_filtered_categories();
+                    if (!empty($categories)) {
                         echo '<div class="post-categories">';
                         foreach ($categories as $category) {
                             echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
@@ -37,12 +37,6 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         <?php the_author_posts_link(); ?>
                     </span>
-                    <?php if (comments_open()): ?>
-                        <span class="comments-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                            <?php comments_popup_link('No Comments', '1 Comment', '% Comments'); ?>
-                        </span>
-                    <?php endif; ?>
                 </div>
             </header>
 
@@ -94,13 +88,6 @@
                     <?php endif; ?>
                 </div>
             </footer>
-
-            <?php
-            // If comments are open or we have at least one comment, load up the comment template.
-            if (comments_open() || get_comments_number()):
-                comments_template();
-            endif;
-            ?>
         </article>
     <?php endwhile; ?>
 </main>
